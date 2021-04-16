@@ -1,0 +1,98 @@
+<%- include("../partials/header.ejs") %>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Main</div>
+                        <a class="nav-link" href="/<%=id %>/articles">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+                        <a class="nav-link" href="/search">
+                            <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                            Search
+                        </a>
+
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as: user</div>
+                    <p>
+
+                    </p>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <h3 class="mx-2"> Dashboard</h1>
+                        <hr/>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" style="border-radius: 50%; width: 50px;height: 50px; position: absolute; right: 10px;bottom: 20px;" data-target="#exampleModal">
+                       <span><i class="fas fa-plus"></i></span>
+                      </button>
+
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                                    </div>
+                                    <div class="modal-body ui form">
+                                        <form action='/articles' method='POST'>
+                                            <div>
+                                                <input type='text' name='blog[id]' value="<%=id%>" hidden>
+                                            </div>
+                                            <div class="field">
+                                                <label> Title </label>
+                                                <input type='text' name='blog[title]' placeholder='Enter article title'>
+                                            </div>
+                                            <div class="field">
+                                                <label> Context </label>
+                                                <textarea name='blog[context]'></textarea>
+                                            </div>
+
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">ADD</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <% articles.forEach(function(requ){ %>
+
+                                <div class="card ml-4" style="width: 28rem;">
+                                    <div class="card-body">
+                                        <h3 class="card-title" style="color: black;">Articles</h3>
+                                        <p class="card-text">Title:
+                                            <%= requ.title %>
+                                        </p>
+                                        <p class="card-text">Context:
+                                            <%=requ.context %>
+                                        </p>
+                                        <h6>Created on:
+                                            <%= requ.date %>
+                                        </h6>
+                                        <h6>Status:
+                                            <%= requ.status %>
+                                        </h6>
+                                        <a href="<%=id%>/articles/<%= requ._id %>" class="btn btn-secondary">Read More</a>
+
+
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                </div>
+
+        </div>
+        </main>
+        <%- include("../partials/footer") %>

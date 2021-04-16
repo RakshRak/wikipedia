@@ -1,0 +1,56 @@
+<%- include("../partials/header.ejs") %>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Main</div>
+                        <a class="nav-link" href="/articles">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+                        <a class="nav-link" href="/search">
+                            <div class="sb-nav-link-icon"><i class="fas fa-search"></i></div>
+                            Search
+                        </a>
+
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as: User</div>
+                    <p>
+
+                    </p>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+
+                <div class="container-fluid">
+                    <h3 class="mt-4">Edit</h1>
+                        <hr/>
+
+
+                        <div class='ui main text container segment'>
+                            <div class='ui huge header'>Edit
+                                <%=requ.title%>
+                            </div>
+                            <form class='ui form' action='/<%=id%>/articles/<%=requ._id%>?_method=PUT' method="POST">
+                                <div class='field'>
+                                    <label> Title </label>
+                                    <input type='text' name='blog[title]' value='<%=requ.title%>'>
+                                </div>
+
+                                <div class='field'>
+                                    <label> Context </label>
+                                    <textarea name='blog[context]'><%=requ.context%></textarea>
+                                </div>
+                                <input type="text" name='blog[status]' value="Waiting for approval" hidden>
+                                <input class='ui red big basic button' type='submit'>
+                            </form>
+                        </div>
+
+
+            </main>
+            <%- include("../partials/footer") %>
