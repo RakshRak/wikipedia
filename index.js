@@ -10,7 +10,7 @@ const Article_route = require('./routes/article.js');
 const app = express();
 const port = process.env.PORT || 3000;
 require('./config/passport')(passport)
-const dbUrl = "mongodb+srv://Rmanager:rakshith@requestmanager.qxqre.mongodb.net/wiki?retryWrites=true&w=majority";
+const dbUrl = "giveyoururl";
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
